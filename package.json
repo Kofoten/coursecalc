@@ -1,0 +1,17 @@
+{
+  "name": "coursecalc",
+  "version": "1.0.0",
+  "description": "Calculates best courses to use for testrun",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx ./src/index.ts"
+  },
+  "type": "module",
+  "author": "Rasmus Steen <rasmus@steen.ninja>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.12.2",
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.3"
+  }
+}
