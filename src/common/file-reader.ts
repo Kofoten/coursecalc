@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'fs';
 import { Result, success, error } from './result';
 
-interface Controls {
+export interface Controls {
     set: Set<number>;
     array: number[];
 }

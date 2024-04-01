@@ -6,12 +6,12 @@ if (process.argv.length < 3) {
     process.exit(1);
 }
 
-const coursesResult = readAndParseFile(process.argv[2]);
-if (coursesResult.success === false) {
-    console.error(coursesResult.error);
+const parsingResult = readAndParseFile(process.argv[2]);
+if (parsingResult.success === false) {
+    console.error(parsingResult.error);
     process.exit(1);
 }
 
-const mostUnvisitedResult = calculators.mostVisits(coursesResult.data);
+const mostUnvisitedResult = calculators.mostVisits(parsingResult.data);
 
 console.log(`Most Unvisited: ${mostUnvisitedResult.join(', ')}`);
