@@ -1,9 +1,22 @@
 import { CourseCollection } from '../common/file-reader';
+import { Result, success, error } from '../common/result';
 
-export const mostVisits = (courses: CourseCollection): string[] => {
+export const mostVisits = (courses: CourseCollection, required: string[]): Result<string[]> => {
     const remaining = new Set(Object.values(courses).flatMap((course) => course.controls.array));
 
     const selectedNames: string[] = [];
+    for (let i = 0; i < required.length; i++) {
+        const course = courses[required[i]];
+
+        if (!course) {
+            return error(`The required course '${required[i]}' was not fount in the input data.`);
+        }
+
+        selectedNames.push(course.name);
+        course.controls.array.forEach((control) => remaining.delete(control));
+        delete courses[course.name];
+    }
+
     while (remaining.size > 0) {
         const coursesEntries = Object.entries(courses);
         const weightedCourses = coursesEntries.map((course) => {
@@ -22,5 +35,5 @@ export const mostVisits = (courses: CourseCollection): string[] => {
         delete courses[heaviestCourse.name];
     }
 
-    return selectedNames;
+    return success(selectedNames);
 };
